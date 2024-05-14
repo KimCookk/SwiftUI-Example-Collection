@@ -15,6 +15,7 @@
 		2031846D2BEBC3240004206C /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031846C2BEBC3240004206C /* AddView.swift */; };
 		203184702BED0E390004206C /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2031846F2BED0E390004206C /* ItemModel.swift */; };
 		203184732BED125E0004206C /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203184722BED125E0004206C /* ListViewModel.swift */; };
+		203184752BF3A6670004206C /* NoItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203184742BF3A6670004206C /* NoItemsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		2031846C2BEBC3240004206C /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		2031846F2BED0E390004206C /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		203184722BED125E0004206C /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		203184742BF3A6670004206C /* NoItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				203184682BEBC0AF0004206C /* ListView.swift */,
 				2031846A2BEBC1EA0004206C /* ListRowView.swift */,
 				2031846C2BEBC3240004206C /* AddView.swift */,
+				203184742BF3A6670004206C /* NoItemsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				203184732BED125E0004206C /* ListViewModel.swift in Sources */,
 				2031846B2BEBC1EB0004206C /* ListRowView.swift in Sources */,
 				2031845A2BEBBDD00004206C /* TodoAppWithMVVMApp.swift in Sources */,
+				203184752BF3A6670004206C /* NoItemsView.swift in Sources */,
 				203184692BEBC0AF0004206C /* ListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
