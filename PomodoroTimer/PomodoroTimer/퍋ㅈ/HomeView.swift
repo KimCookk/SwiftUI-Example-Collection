@@ -63,7 +63,7 @@ struct HomeView: View {
                         
                         Text(pomodoroModel.timerStringValue)
                             .font(.system(size: 45, weight: .light))
-                            .rotationEffect(.init(degrees: -90))
+                            .rotationEffect(.init(degrees: 90))
                     }
                     .padding(60)
                     .frame(width: proxy.size.width)
@@ -73,12 +73,14 @@ struct HomeView: View {
                     
                     Button {
                         if pomodoroModel.isStarted {
-                            
+                            pomodoroModel.stopTimer()
+                            // MARK: Cancelling All Notifications
+                            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                         } else {
                             pomodoroModel.addNewTimer = true
                         }
                     } label: {
-                        Image(systemName: !pomodoroModel.isStarted ? "timer" : "pause")
+                        Image(systemName: !pomodoroModel.isStarted ? "timer" : "stop.fill")
                             .font(.largeTitle.bold())
                             .foregroundColor(.white)
                             .frame(width: 80, height: 80)
@@ -106,6 +108,9 @@ struct HomeView: View {
                 Color.black
                     .opacity(pomodoroModel.addNewTimer ? 0.25 : 0)
                     .onTapGesture {
+                        pomodoroModel.hour = 0
+                        pomodoroModel.minute = 0
+                        pomodoroModel.second = 0
                         pomodoroModel.addNewTimer = false
                     }
                 
@@ -115,6 +120,20 @@ struct HomeView: View {
             }
         })
         .preferredColorScheme(.dark)
+        .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
+            if pomodoroModel.isStarted {
+                pomodoroModel.updateTimer()
+            }
+        }
+        .alert("Congratulations You did it hooray", isPresented: $pomodoroModel.isFinished) {
+            Button("Start New", role: .cancel) {
+                pomodoroModel.stopTimer()
+                pomodoroModel.addNewTimer = true
+            }
+            Button("Close", role: .destructive) {
+                pomodoroModel.stopTimer()
+            }
+        }
     }
     
     // MARK: New Time Button Sheet
@@ -137,8 +156,13 @@ struct HomeView: View {
                         Capsule()
                             .fill(.white.opacity(0.3))
                     }
+                    .contextMenu{
+                        ContextMenuOptions(maxValue: 12, hint: "hr") { value in
+                            pomodoroModel.hour = value
+                        }
+                    }
                 
-                Text("\(pomodoroModel.hour) min")
+                Text("\(pomodoroModel.minute) min")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .foregroundColor(.white.opacity(0.3))
@@ -148,8 +172,13 @@ struct HomeView: View {
                         Capsule()
                             .fill(.white.opacity(0.3))
                     }
+                    .contextMenu{
+                        ContextMenuOptions(maxValue: 60, hint: "min") { value in
+                            pomodoroModel.minute = value
+                        }
+                    }
                 
-                Text("\(pomodoroModel.hour) sec")
+                Text("\(pomodoroModel.second) sec")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .foregroundColor(.white.opacity(0.3))
@@ -158,12 +187,17 @@ struct HomeView: View {
                     .background() {
                         Capsule()
                             .fill(.white.opacity(0.3))
+                    }
+                    .contextMenu{
+                        ContextMenuOptions(maxValue: 60, hint: "sec") { value in
+                            pomodoroModel.second = value
+                        }
                     }
             }
             .padding(.top, 20)
             
             Button {
-                
+                pomodoroModel.startTimer()
             } label: {
                 Text("Save")
                     .font(.title3)
@@ -191,9 +225,12 @@ struct HomeView: View {
     }
     
     // MARK: Reusable Context Menu Options
-    func ContextMenuOptions(maxValue: Int, hint: String, onClick: @escaping (Int)->()) {
+    @ViewBuilder
+    func ContextMenuOptions(maxValue: Int, hint: String, onClick: @escaping (Int)->()) -> some View {
         ForEach(0...maxValue, id: \.self) { value in
-            
+            Button("\(value) \(hint)") {
+                onClick(value)
+            }
         }
     }
 }
