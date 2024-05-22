@@ -9,11 +9,12 @@ import Foundation
 
 class ListViewModel: ObservableObject {
     
-    @Published var items: [ItemModel] = [] {
+    @Published var items: [ItemModel] = [ItemModel(title: "Test", isCompleted: true)] {
         didSet {
             saveItems()
         }
     }
+    
     let itemsKey: String = "items_list"
     
     init() {
