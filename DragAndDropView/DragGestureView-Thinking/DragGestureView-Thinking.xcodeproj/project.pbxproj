@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2056D0972C1A9449005E87CA /* DragGestureBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2056D0962C1A9449005E87CA /* DragGestureBottomView.swift */; };
 		207B5FEC2C19C8B100652CF3 /* DragGestureView_ThinkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B5FEB2C19C8B100652CF3 /* DragGestureView_ThinkingApp.swift */; };
 		207B5FEE2C19C8B100652CF3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B5FED2C19C8B100652CF3 /* ContentView.swift */; };
 		207B5FF02C19C8B200652CF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 207B5FEF2C19C8B200652CF3 /* Assets.xcassets */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2056D0962C1A9449005E87CA /* DragGestureBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragGestureBottomView.swift; sourceTree = "<group>"; };
 		207B5FE82C19C8B100652CF3 /* DragGestureView-Thinking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DragGestureView-Thinking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		207B5FEB2C19C8B100652CF3 /* DragGestureView_ThinkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragGestureView_ThinkingApp.swift; sourceTree = "<group>"; };
 		207B5FED2C19C8B100652CF3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				207B5FEF2C19C8B200652CF3 /* Assets.xcassets */,
 				207B5FF12C19C8B200652CF3 /* Preview Content */,
 				207B5FF92C19C8C300652CF3 /* DragGestureView.swift */,
+				2056D0962C1A9449005E87CA /* DragGestureBottomView.swift */,
 			);
 			path = "DragGestureView-Thinking";
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 				207B5FEE2C19C8B100652CF3 /* ContentView.swift in Sources */,
 				207B5FFA2C19C8C300652CF3 /* DragGestureView.swift in Sources */,
 				207B5FEC2C19C8B100652CF3 /* DragGestureView_ThinkingApp.swift in Sources */,
+				2056D0972C1A9449005E87CA /* DragGestureBottomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
