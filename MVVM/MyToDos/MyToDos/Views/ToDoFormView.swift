@@ -33,7 +33,7 @@ extension ToDoFormView {
     func updateToDo() {
         if let id = formVM.id {
             let toDo = ToDo(id: id, name: formVM.name, completed: formVM.completed)
-            dataStore.updateToDo(toDo)
+            dataStore.updateToDo.send(toDo)
         }
         
         presentationMode.wrappedValue.dismiss()
@@ -41,7 +41,7 @@ extension ToDoFormView {
     
     func addToDo() {
         let toDo = ToDo(name: formVM.name)
-        dataStore.addToDo(toDo)
+        dataStore.addToDo.send(toDo)
         
         presentationMode.wrappedValue.dismiss()
     }

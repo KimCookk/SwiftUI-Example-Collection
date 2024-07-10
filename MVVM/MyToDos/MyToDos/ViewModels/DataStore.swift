@@ -6,15 +6,47 @@
 //
 
 import Foundation
+import Combine
 
 class DataStore: ObservableObject {
     @Published var toDos: [ToDo] = []
+    @Published var appError: ErrorType? = nil
+    var addToDo = PassthroughSubject<ToDo, Never>()
+    var updateToDo = PassthroughSubject<ToDo, Never>()
+    var deleteToDo = PassthroughSubject<IndexSet, Never>()
+    
+    var subscriptions = Set<AnyCancellable>()
     
     init() {
         print(FileManager.docDirURL.path)
+        addSubscriptions()
         if FileManager().docExist(named: fileName) {
             loadToDos()
         }
+    }
+    
+    func addSubscriptions() {
+        addToDo.sink { [unowned self] toDo in
+            toDos.append(toDo)
+            saveToDos()
+        }
+        .store(in: &subscriptions)
+        
+        updateToDo.sink { [unowned self] toDo in
+            guard let index = toDos.firstIndex(where: {$0.id == toDo.id}) else {
+                return
+            }
+            
+            toDos[index] = toDo
+            saveToDos()
+        }
+        .store(in: &subscriptions)
+        
+        deleteToDo.sink { [unowned self] indexSet in
+            toDos.remove(atOffsets: indexSet)
+            saveToDos()
+        }
+        .store(in: &subscriptions)
     }
     
     func addToDo(_ toDo: ToDo) {
@@ -44,11 +76,13 @@ class DataStore: ObservableObject {
                 do {
                     toDos = try decoder.decode([ToDo].self, from: data)
                 }catch {
-                    print(error.localizedDescription)
+                    //print(ToDoError.decodingError.localizedDescription)
+                    appError = ErrorType(error: .decodingError)
                 }
                 
             case .failure(let error):
-                print(error.localizedDescription)
+//                print(error.localizedDescription)
+                appError = ErrorType(error: error)
             }
           
         }
@@ -64,11 +98,13 @@ class DataStore: ObservableObject {
             
             FileManager().saveDocument(contents: jsonString, docName: fileName) { error in
                 if let error = error {
-                    print(error.localizedDescription)
+//                    print(error.localizedDescription)
+                    appError = ErrorType(error: error)
                 }
             }
         } catch {
-            print(error.localizedDescription)
+//            print(ToDoError.encodingError.localizedDescription)
+            appError = ErrorType(error: .encodingError)
         }
     }
 }

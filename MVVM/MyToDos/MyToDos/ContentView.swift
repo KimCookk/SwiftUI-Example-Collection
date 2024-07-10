@@ -24,7 +24,7 @@ struct ContentView: View {
                             .foregroundColor(toDo.completed ? .green : Color(.label))
                     }
                 }
-                .onDelete(perform: dataStore.deleteToDo)
+                .onDelete(perform: dataStore.deleteToDo.send)
             }
             .listStyle(InsetGroupedListStyle())
             .toolbar {
@@ -44,6 +44,9 @@ struct ContentView: View {
             }
         }
         .sheet(item: $modalType) { $0 }
+        .alert(item: $dataStore.appError) { appError in
+            Alert(title: Text("Oh Oh.."), message: Text(appError.error.localizedDescription))
+        }
     }
 }
 
