@@ -14,12 +14,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List() {
-                ForEach(dataStore.toDos) { toDo in
+                ForEach(dataStore.toDos.value) { toDo in
                     Button {
                         modalType = .update(toDo)
                     } label: {
                         Text(toDo.name)
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .font(.title)
                             .strikethrough(toDo.completed)
                             .foregroundColor(toDo.completed ? .green : Color(.label))
                     }
