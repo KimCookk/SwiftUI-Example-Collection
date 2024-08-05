@@ -23,23 +23,68 @@ struct ChipInputField: View {
                 }
             }
             
-            TextField(placeholder, text: $inputText)
-                .onSubmit(of: .text) {
-                    chips.append(inputText)
+            CustomTextFieldWrapper(inputText: $inputText,
+                                   placeholder: placeholder,
+                                   onSubmit: {
+                self.addChip(inputText)
+                inputText = ""
+            }, onChange: { oldValue, newValue in
+                if(inputText.hasSuffix(" ") && newValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false) {
+                    print(String(inputText[..<inputText.index(before: inputText.endIndex)]))
+                    self.addChip(String(inputText[..<inputText.index(before: inputText.endIndex)]))
                     inputText = ""
-                    
                 }
-                .onChange(of: inputText) { _ in
-                    if(inputText.hasSuffix(" ")) {
-                        chips.append(String(inputText[..<inputText.index(before: inputText.endIndex)]))
-                                    inputText = ""
-                    } else if !chips.isEmpty && inputText.isEmpty {
-                        let last = chips.removeLast()
-                        inputText = last
-                    }
+            }, onDelete: { oldValue, newValue in
+                if !chips.isEmpty && (oldValue.isEmpty == true && newValue.isEmpty == true) {
+                    let last = chips.removeLast()
+                    inputText = last
                 }
+            })
+            .lineLimit(1)
+            
+            
+            
+            //                .onSubmit(of: .text) {
+            //                    self.addChip(inputText)
+            //                    inputText = ""
+            //                }
+            //                .onChange(of: inputText) { oldValue, newValue in
+            //                    if(inputText.hasSuffix(" ") && newValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false) {
+            //                        print(String(inputText[..<inputText.index(before: inputText.endIndex)]))
+            //                        self.addChip(String(inputText[..<inputText.index(before: inputText.endIndex)]))
+            //                        inputText = ""
+            //                    }
+            //                    else if !chips.isEmpty && (oldValue.isEmpty == true && newValue.isEmpty == true) {
+            //                        let last = chips.removeLast()
+            //                        inputText = last
+            //                    }
+            //                }
+            
+            
+            //            TextField(placeholder, text: $inputText)
+            //                .lineLimit(1)
+            //                .onSubmit(of: .text) {
+            //                    self.addChip(inputText)
+            //                    inputText = ""
+            //                }
+            //                .onChange(of: inputText) { oldValue, newValue in
+            //                    if(inputText.hasSuffix(" ") && newValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty == false) {
+            //                        print(String(inputText[..<inputText.index(before: inputText.endIndex)]))
+            //                        self.addChip(String(inputText[..<inputText.index(before: inputText.endIndex)]))
+            //                        inputText = ""
+            //                    }
+            //                    else if !chips.isEmpty && (oldValue.isEmpty == true && newValue.isEmpty == true) {
+            //                        let last = chips.removeLast()
+            //                        inputText = last
+            //                    }
+            //                }
         }
-        .underline()
+    }
+    
+    func addChip(_ chip: String) {
+        if(!chips.contains(chip)) {
+            chips.append(chip)
+        }
     }
 }
 

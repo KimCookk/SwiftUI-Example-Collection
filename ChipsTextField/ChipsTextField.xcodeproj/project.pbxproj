@@ -13,6 +13,7 @@
 		20234FB12C5F601D00746A2B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20234FB02C5F601D00746A2B /* Preview Assets.xcassets */; };
 		20234FB82C5F603C00746A2B /* ChipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20234FB72C5F603C00746A2B /* ChipView.swift */; };
 		20234FBA2C5F611800746A2B /* ChipInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20234FB92C5F611800746A2B /* ChipInputField.swift */; };
+		208D36C32C604F8B00EAE42B /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208D36C22C604F8B00EAE42B /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		20234FB02C5F601D00746A2B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		20234FB72C5F603C00746A2B /* ChipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipView.swift; sourceTree = "<group>"; };
 		20234FB92C5F611800746A2B /* ChipInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipInputField.swift; sourceTree = "<group>"; };
+		208D36C22C604F8B00EAE42B /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTextField.swift; path = ../../../../../CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				20234FAD2C5F601D00746A2B /* Assets.xcassets */,
 				20234FAF2C5F601D00746A2B /* Preview Content */,
 				20234FB92C5F611800746A2B /* ChipInputField.swift */,
+				208D36C22C604F8B00EAE42B /* CustomTextField.swift */,
 			);
 			path = ChipsTextField;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				20234FAA2C5F601B00746A2B /* ChipsTextFieldApp.swift in Sources */,
 				20234FB82C5F603C00746A2B /* ChipView.swift in Sources */,
 				20234FBA2C5F611800746A2B /* ChipInputField.swift in Sources */,
+				208D36C32C604F8B00EAE42B /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
