@@ -52,6 +52,12 @@ class BookshelvesModel: ObservableObject {
         shelves[shelfId].books[bookId].pages.append(newPage)
     }
     
+    func updatePage() {
+        for index in shelves[shelfId].books[bookId].pages.indices {
+            shelves[shelfId].books[bookId].pages[index].content = "\(index)"
+        }
+    }
+    
     func totalBooks(for shelf: Shelf) -> String {
         "\(shelf.books.count) book\(shelf.books.count == 1 ? "" : "s")"
     }

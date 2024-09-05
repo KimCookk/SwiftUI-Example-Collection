@@ -37,7 +37,8 @@ struct PageEditView: View {
         }
         .navigationBarTitle("Pages")
         .navigationBarItems(
-            trailing: Button(
+            trailing: HStack {
+                Button(
                 action: {
                     newItem.removeAll()
                     isAdd = true
@@ -45,8 +46,17 @@ struct PageEditView: View {
                 label: {
                     Image(systemName: "plus.circle.fill")
                         .imageScale(.large)
-                }
-            )
+                })
+                
+                Button(
+                action: {
+                    model.updatePage()
+                },
+                label: {
+                    Image(systemName: "arrow.clockwise")
+                        .imageScale(.large)
+                })
+            }
         )
         .onAppear {
             DispatchQueue.main.async {
