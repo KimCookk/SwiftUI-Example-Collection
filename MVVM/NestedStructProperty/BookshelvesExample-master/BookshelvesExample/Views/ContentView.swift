@@ -39,16 +39,30 @@ struct ContentView: View {
             }
             .navigationBarTitle("Shelves")
             .navigationBarItems(
-                trailing: Button(
-                    action: { 
-                        newItem.removeAll()
-                        isAdd = true
-                    },
-                    label: {
-                        Image(systemName: "plus.circle.fill")
-                            .imageScale(.large)
+                trailing:
+                    HStack {
+                        Button(
+                            action: {
+                                newItem.removeAll()
+                                isAdd = true
+                            },
+                            label: {
+                                Image(systemName: "plus.circle.fill")
+                                    .imageScale(.large)
+                            }
+                        )
+                        
+                        
+                        Button(
+                            action: {
+                                model.updateShelf()
+                            },
+                            label: {
+                                Image(systemName: "arrow.clockwise")
+                                    .imageScale(.large)
+                            }
+                        )
                     }
-                )
             )
         }
     }

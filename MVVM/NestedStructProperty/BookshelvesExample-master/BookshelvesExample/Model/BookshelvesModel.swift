@@ -52,6 +52,12 @@ class BookshelvesModel: ObservableObject {
         shelves[shelfId].books[bookId].pages.append(newPage)
     }
     
+    func updateShelf() {
+        for index in shelves.indices {
+            shelves[index].title = "\(index)"
+        }
+    }
+    
     func updatePage() {
         for index in shelves[shelfId].books[bookId].pages.indices {
             shelves[shelfId].books[bookId].pages[index].content = "\(index)"
